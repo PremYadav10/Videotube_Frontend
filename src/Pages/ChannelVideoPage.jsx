@@ -54,7 +54,7 @@ const ChannelVideosPage = () => {
                 <FaVideo className='w-12 h-12 text-gray-400 mx-auto mb-4' />
                 <h1 className='text-2xl font-semibold text-gray-800 dark:text-white mb-4'>No Videos Uploaded</h1>
                 <p className='text-gray-500 dark:text-gray-400'>Start your channel journey by uploading your first video!</p>
-                <Link to="/upload" className="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
+                <Link to="/publish-video" className="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
                     Upload Video
                 </Link>
             </div>

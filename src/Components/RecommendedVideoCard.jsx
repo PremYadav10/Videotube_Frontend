@@ -10,10 +10,10 @@ function RecommendedVideoCard(props) {
     const { videoId, thumbnail, title, channelName, duration, views, createdAt } = props;
     
     // 1. Initialize the custom hook to get status and toggle function
-    const { toggleSaveStatus, isSaved } = useWatchLaterToggle(); 
+    const { toggleSaveStatus, isSaved } = useWatchLaterToggle(videoId); 
     
     // 2. Check the saved status for this specific video ID
-    const isVideoSaved = isSaved(videoId); 
+    const isVideoSaved = isSaved; 
 
     const formatedDuration = formatDuration(duration);
     const timeSinceUpload = timeAgo(createdAt);

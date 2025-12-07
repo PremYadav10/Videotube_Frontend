@@ -4,13 +4,16 @@ import Sidebar from './Components/Sidebar'
 import SidebarMenu from './Components/SidebarMenu'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
   const isOpen = useSelector((state)=>state.sidebar.isOpen)
 
   return (
+
     <div className='min-h-screen  bg-gradient-to-br from-gray-900 via-gray-800 to-black'>
+       <Toaster position="bottom-right" reverseOrder={false} />
         <Header />
 
         {/* Conditional rendering with animation classes */}

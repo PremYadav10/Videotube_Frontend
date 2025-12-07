@@ -69,7 +69,7 @@ function Signup() {
                     <p className='text-sm'>If you already have an account? <Link to="/login" className='text-blue-500'>Log in</Link></p>
                 </div>
 
-                <span className='border-b border-gray-700 w-full my-2'></span>
+                {/* <span className='border-b border-gray-700 w-full my-2'></span> */}
 
                 {/* API Error Display */}
                 {apiError && (
@@ -79,14 +79,15 @@ function Signup() {
                 <div className='w-full flex flex-col items-center'>
 
                     {/* ... Google Sign Up section remains the same ... */}
-                    <div className=' flex flex-col justify-center items-center gap-2'>
+
+                    {/* <div className=' flex flex-col justify-center items-center gap-2'>
                         <h2 className='text-lg '>If you have a google account you can create account with google </h2>
                         <button className='flex flex-row items-center gap-2 border border-gray-700 p-2 rounded-lg hover:bg-gray-800 cursor-pointer'>
                             <FaGoogle />
                             Sign up with Google
                         </button>
                         <p className='text-sm mt-2'>By continuing, you agree to our Terms of Service and Privacy Policy.</p>
-                    </div>
+                    </div> */}
 
                     <span className='border-b border-gray-700 w-full my-2'></span>
 

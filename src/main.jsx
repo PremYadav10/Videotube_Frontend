@@ -28,6 +28,7 @@ import ChannelStatsPage from './Pages/ChannelStatePage.jsx'
 import ChannelVideosPage from './Pages/ChannelVideoPage.jsx'
 import ChannelSubscribersPage from './Pages/ChannelSubscriber.jsx'
 import ChannelSubscribedPage from './Pages/SbuscribedChannel.jsx'
+import SearchPage from './Pages/SearchPage.jsx'
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
                 path: "/playlist/:playlistId",
                 element: <Playlist />
             },
+            {
+    path: "/search",
+    element: <SearchPage/>,
+},
+
             {
                 path: "/settings",
                 element: <Settings />,
@@ -153,7 +159,8 @@ const router = createBrowserRouter([
             // Optional: you can set index: true for 'stats' to handle the default redirect more cleanly
             // { index: true, element: <ChannelStatsPage /> }
         ]
-    }
+    },
+    
 
 ])
 

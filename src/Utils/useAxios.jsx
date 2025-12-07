@@ -29,6 +29,7 @@ const useAxios = () => {
           headers: {
             ...headers,
             "Content-Type": isFormData ? "multipart/form-data" : "application/json",
+            //...(user?.token ? { Authorization: `Bearer ${user.token}` } : {})
           },
         });
 

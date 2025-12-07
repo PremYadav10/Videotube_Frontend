@@ -62,11 +62,11 @@ function Login() {
     };
 
     return (
-        <div className='min-h-screen w-full bg-gray-900 text-white p-5'>
-            <div className='h-full w-[70%] mx-[15%] flex flex-col items-center gap-2 mt-10 border border-gray-700 rounded-3xl p-5'>
-                <h1 className='text-5xl '>Welcome Back!</h1>
-                <p className='text-md'>Please enter your credentials to access your account.</p>
-                <p className='text-md'>Don't have an account? <Link to="/signup" className='text-blue-500'>Sign up</Link></p>
+        <div className='min-h-screen w-full bg-gray-900 text-white p-5 '>
+            <div className='h-full w-[70%] mx-[15%] flex flex-col items-center gap-2 mt-10 border border-gray-700 rounded-3xl px-5 py-15'>
+                <h1 className='text-5xl text-center'>Welcome Back</h1>
+                <p className='text-md text-center'>Please enter your credentials to access your account.</p>
+                <p className='text-md text-center'>Don't have an account? <Link to="/signup" className='text-blue-500'>Sign up</Link></p>
                 
                 {loginError && (
                     <p className='text-red-500 bg-red-900/30 p-2 rounded w-4/5 text-center'>{loginError}</p>
@@ -113,16 +113,17 @@ function Login() {
                     </button>
                 </form>
 
-                <div className='m-1 '>Or</div>
+                {/* <div className='m-1 '>Or</div> */}
 
                 {/* login with google */}
-                <div className=' flex flex-col justify-center items-center'>
+                {/* <div className=' flex flex-col justify-center items-center'>
                     <button className='flex flex-row items-center gap-2 border border-gray-700 p-2 rounded-lg hover:bg-gray-800 cursor-pointer'>
                         <FaGoogle />
                         Login with Google
                     </button>
                     <p className='text-sm mt-2'>By continuing, you agree to our Terms of Service and Privacy Policy.</p>
-                </div>
+                </div> */}
+                
             </div>
         </div>
     );
