@@ -51,20 +51,24 @@ function Video() {
         setIsLiked(videoIsCurrentlyLiked);
     }, [videoIsCurrentlyLiked]);
 
+
+
     // --- Data Fetching and Initial Statuses (Subscribed) ---
     useEffect(() => {
         const fetchVideoDetails = async () => {
             try {
-                // const response = await sendRequest({
-                //     url: `/videos/${videoId}`,
-                //     method: "GET",
-                // });
-                const response = await fetch(`http://localhost:8000/api/v1/videos/${videoId}`, {
+                const data = await sendRequest({
+                    url: `/videos/${videoId}`,
                     method: "GET",
                     credentials: "include", // Include cookies for authentication
                 });
-                const data = await response.json();
-                console.log("data recive: ",data.data);
+
+                // const response = await fetch(`http://localhost:8000/api/v1/videos/${videoId}`, {
+                //     method: "GET",
+                //     credentials: "include", // Include cookies for authentication
+                // });
+                // const data = await response.json();
+                // console.log("data recive: ",data.data);
                 
 
                 setVideoDetails(data.data);
