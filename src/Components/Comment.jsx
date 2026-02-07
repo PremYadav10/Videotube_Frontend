@@ -5,6 +5,7 @@ import Input from "./Input.jsx";
 import { useSelector } from 'react-redux';
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Comment({ videoId }) {
   const { sendRequest } = useAxios();
@@ -15,7 +16,6 @@ function Comment({ videoId }) {
   const { register, handleSubmit, reset, setValue } = useForm();
   const currentUser = useSelector((state) => state.user?.userData);
   const isLoggedIn = useSelector((state) => state.user.status);
-  const [alert,setAleart] = useState(false);
 
 
   const getComments = async () => {
@@ -62,6 +62,7 @@ function Comment({ videoId }) {
         body: { content: updatedContent },
       });
       getComments();
+      cancelEditing();
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +85,7 @@ function Comment({ videoId }) {
   };
 
   const onAddSubmit = (formData) => {
-    isLoggedIn ? addComment(formData) : setAleart(true)
+    isLoggedIn ? addComment(formData) : toast.error("Login to post a comment");
   };
 
   const onUpdateSubmit = (formData) => {
@@ -123,20 +124,6 @@ function Comment({ videoId }) {
           </div>
         </form>
       </div>
-
-      {alert && (
-        <div className="relative">
-           <div className="bg-white text-black h-25 w-65 flex flex-col justify-center items-center absolute right-0 border border-gray-700 rounded-2xl">
-             <div className="flex flex-row gap-2">
-              <h1 className="font-bold">Sign-In for add Comment's</h1>
-              <button onClick={()=>{setAleart(false)}} className="text-3xl"><RxCross2/></button>
-             </div>
-             <Link to="/login">
-                          <button  className="px-6 py-1.5 bg-gray-600 hover:bg-blue-600 rounded-xl transition-all duration-200 font-medium">Sign In</button>
-             </Link>
-           </div>
-        </div>
-      )}
 
       {/* Comment Feed */}
       {loading ? (

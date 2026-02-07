@@ -153,7 +153,7 @@ function VideoCard(props) {
     };
 
     return (
-        <div className='flex flex-col w-full max-w-xs cursor-pointer bg-transparent hover:bg-gray-800/50 rounded-lg pb-2 transition duration-150'>
+        <div className='flex flex-col w-full max-w-xs cursor-pointer bg-transparent hover:bg-gray-500/50 rounded-lg pb-2 transition duration-150'>
             <Link to={`/video/${videoId}`}>
                 <div className='relative w-full aspect-video rounded-xl overflow-hidden mb-2'>
                     <img 

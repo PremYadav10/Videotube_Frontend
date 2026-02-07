@@ -28,9 +28,9 @@ const SearchPage = () => {
 
   return (
     <div className="p-4">
-      {/* <h2 className="text-xl font-semibold mb-4 text-white">
+      <h2 className="text-md font-semibold mb-4 text-gray-500">
         Search Results for "{query}"
-      </h2> */}
+      </h2>
       {videos.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {videos.map((video) => (

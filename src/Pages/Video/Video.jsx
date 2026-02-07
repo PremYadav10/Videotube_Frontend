@@ -18,6 +18,7 @@ function Video() {
 
     // --- Global State Access ---
     const isLoggedIn = useSelector((state) => state.user.status);
+    const userID = useSelector((state) => state.user.userData?.user._id);    
     const likedVideos = useSelector((state) => state.likedVideos.likedVideoIds);
     const recentVideos = useSelector((state) => state.video.videos); // Recommended videos data
 
@@ -26,6 +27,7 @@ function Video() {
     const [likeCount, setLikeCount] = useState(0);
     const [error, setError] = useState(null); // Explicit error state
     const [isSubscribed, setIsSubscribed] = useState(false); // Subscribed status
+    const [channelId, setChannelId] = useState(null); // Channel ID of the video owner
 
     // --- Watch Later Hook Integration ---
     const { toggleSaveStatus, isSaved } = useWatchLaterToggle(videoId);
@@ -53,20 +55,29 @@ function Video() {
     useEffect(() => {
         const fetchVideoDetails = async () => {
             try {
-                const response = await sendRequest({
-                    url: `/videos/${videoId}`,
+                // const response = await sendRequest({
+                //     url: `/videos/${videoId}`,
+                //     method: "GET",
+                // });
+                const response = await fetch(`http://localhost:8000/api/v1/videos/${videoId}`, {
                     method: "GET",
+                    credentials: "include", // Include cookies for authentication
                 });
-                const data = response.data;
+                const data = await response.json();
+                console.log("data recive: ",data.data);
+                
 
-                setVideoDetails(data);
-                setLikeCount(data.views || 0); // Assuming 'views' is the count, but you should use the actual like count from API if available
+                setVideoDetails(data.data);
+                setChannelId(data.data.channel?._id);
+                console.log("chanel id",channelId);
+                
+                setLikeCount(data.data.views || 0); // Assuming 'views' is the count, but you should use the actual like count from API if available
 
-                if (isLoggedIn) {
-                    // TODO: Fetch user-specific status for IS_SUBSCRIBED
-                    // This requires a call like GET /subscriptions/is-subscribed/:channelId
-                    setIsSubscribed(false); // Placeholder
-                }
+                // if (isLoggedIn) {
+                //     // TODO: Fetch user-specific status for IS_SUBSCRIBED
+                //     // This requires a call like GET /subscriptions/is-subscribed/:channelId
+                //     setIsSubscribed(false); // Placeholder
+                // }
             } catch (err) {
                 console.error("Error fetching video:", err);
                 // Set to false to show "Not Available" UI
@@ -80,7 +91,8 @@ function Video() {
     }, [videoId, isLoggedIn, sendRequest]);
 
     // Safety check for channel ID
-    const channelId = videoDetails?.channel?._id;
+    // const channelId = videoDetails?.channel?._id;
+
 
     // --- Action Handlers ---
 
@@ -98,7 +110,7 @@ function Video() {
             await sendRequest({
                 url: `/likes/toggle/v/${videoId}`,
                 method: "POST",
-                body: null // Send null body to avoid JSON parsing errors
+                body: {}
             });
 
             // Optimistic UI Update & Redux Sync
@@ -116,14 +128,49 @@ function Video() {
         }
     };
 
-    const toggleSubscribe = async () => {
-        if (!channelId) return;
+    // check subscribe toggle
+    
+    // const isSubscribedCurrently = useMemo(async () => {
+    //      let sbscribedChannels = null;
+    //     if (!isLoggedIn) return ;
+    //     try {
+    //         const response = await sendRequest({ url: `subscriptions/u/${userID}`, method: 'GET' });
+    //          sbscribedChannels = response.data;            
+    //             console.log("response ",response.data)
+    //     } catch (error) {
+    //         console.error("Failed to fetch subscribed channels:", error);
+    //     }
 
+    //     //     console.log("1");
+            
+    //     //    // search in the response data if channelId is present if yes setIsSubscribed true else false
+    //     //     sbscribedChannels.map((ch) => {
+    //     //         // if(ch.channel._id === channelId){
+    //     //         //     setIsSubscribed(true);
+    //     //             console.log("Subscribed to channel:", ch.channel._id);
+    //     //             console.log("current :",channelId);
+                    
+    //     //         // }
+                
+    //     //     });
+
+        
+    // },[])
+
+    
+
+    const toggleSubscribe = async () => {
+        // Safety check - user not try to login ourself
+        if( channelId === userID ) {
+            toast.error("You cannot subscribe to yourself.");
+            return;
+        }
         try {
+            // console.log("Toggling subscription for channel:", channelId);
             await sendRequest({
                 url: `/subscriptions/c/${channelId}`,
                 method: "POST",
-                body: null
+                body: {}
             });
 
             // Optimistic UI Update
@@ -157,7 +204,8 @@ function Video() {
 
     // --- Render Component ---
     return (
-        <div className="absolute top-0 left-0 right-0 bg-black min-h-screen text-white z-30 flex flex-col">
+        // classes old = absolute top-0 left-0 right-0 bg-black min-h-screen text-white z-30 flex flex-col
+        <div className="min-h-screen bg-black text-white">
             <Toaster position="bottom-right" reverseOrder={false} />
             <div className="flex flex-col lg:flex-row w-full px-6 py-4 gap-6">
 
@@ -231,12 +279,12 @@ function Video() {
                             </button>
 
                             {/* DISLIKE BUTTON (Optional) */}
-                            <button
+                            {/* <button
                                 onClick={() => handleAction(() => console.log('Dislike action'))}
                                 className="bg-gray-800 px-4 py-2 rounded-full hover:bg-gray-700"
                             >
                                 <FaThumbsDown />
-                            </button>
+                            </button> */}
 
                             {/* SAVE / WATCH LATER BUTTON */}
                             <button
