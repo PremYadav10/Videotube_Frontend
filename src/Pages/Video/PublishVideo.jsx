@@ -26,14 +26,13 @@ function PublishVideo() {
     publishVideo(submitData)
     
   };
-
+// API call to publish video  
   const publishVideo = async(submitData)=> {
     try {
       const response = await sendRequest({
         method:"post",
         url:"/videos",
         body: submitData,
-        creadentials: "include"
       })
       console.log(response);
     } catch (error) {
