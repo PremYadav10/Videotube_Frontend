@@ -33,6 +33,7 @@ function PublishVideo() {
         method:"post",
         url:"/videos",
         body: submitData,
+        creadentials: "include"
       })
       console.log(response);
     } catch (error) {

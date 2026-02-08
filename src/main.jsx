@@ -13,7 +13,7 @@ import Video from "./Pages/Video/Video.jsx";
 import TweetPage from "./Pages/Tweet/TweetPage.jsx";
 import Logout from "./Pages/Logout.jsx";
 import Playlist from "./Pages/Playlist/Playlist.jsx";
-import Settings from "./Pages/Settings/settings.jsx";
+import Settings from "./Pages/Settings/Settings.jsx";
 import UpdateAccountDetails from "./Pages/Settings/UpdateAccountDetails.jsx";
 import ChangePasswordForm from "./Pages/Settings/ChangePassword.jsx";
 import UpdateProfilePictureForm from "./Pages/Settings/UpdateAvatar.jsx";
