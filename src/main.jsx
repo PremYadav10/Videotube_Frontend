@@ -72,6 +72,10 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       {
+        path:"/downloads",
+        element: <div className="min-h-screen w-full flex items-center justify-center text-white text-3xl">Downloads Page - Coming Soon!</div>
+      },
+      {
         path: "/settings",
         element: <Settings />,
         children: [

@@ -2,11 +2,13 @@ import React from 'react'
 import Input from '../../Components/Input'
 import { useForm } from 'react-hook-form'
 import useAxios from '../../Utils/useAxios';
+import { useNavigate } from 'react-router-dom';
 
 function PublishVideo() {
 
-  const { register, handleSubmit, } = useForm();
+  const { register, handleSubmit, reset} = useForm();
 const { sendRequest, loading } = useAxios();
+const navigate = useNavigate();
 
   const onSubmit = (formData) => {
       const submitData = new FormData();
@@ -35,6 +37,10 @@ const { sendRequest, loading } = useAxios();
         body: submitData,
       })
       console.log(response);
+        reset();
+
+    navigate(`/video/${response.data._id}`);
+    
     } catch (error) {
       console.log("Error in publish video",error)
     }

@@ -72,13 +72,8 @@ function SidebarMenu() {
 
       <hr className='border-gray-700 my-1' />
 
-      <Item icon={<MdSubscriptions />} title='Deshboard' iconSize='text-2xl' />
-      <Item icon={<MdOutlinePlaylistPlay />} title='Playlist' iconSize='text-[40px]' />
-      <Item icon={<FaDownload />} title='Download' iconSize='text-2xl' />
-      <Item icon={<AiFillLike />} title='Liked Videos' iconSize='text-2xl' />
-      <Item icon={<MdOutlineSettings />} title='Settings' iconSize='text-2xl' />
+      
 
-      <hr className='border-gray-700 my-1' />
     </div>
   )
 }
