@@ -59,7 +59,7 @@ function Sidebar() {
                 </li>
                 </Link>
 
-                {isLoggedIn && <Link to={'/download'}>
+                {isLoggedIn && <Link to={'/downloads'}>
                 <li className="flex flex-col justify-center items-center cursor-pointer h-16 w-16 hover:bg-gray-800 rounded-md">
                     <span className="text-xl">
                         <FaDownload />
