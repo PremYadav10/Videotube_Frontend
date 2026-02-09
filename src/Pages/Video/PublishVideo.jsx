@@ -6,7 +6,7 @@ import useAxios from '../../Utils/useAxios';
 function PublishVideo() {
 
   const { register, handleSubmit, } = useForm();
-  const {sendRequest} = useAxios()
+const { sendRequest, loading } = useAxios();
 
   const onSubmit = (formData) => {
       const submitData = new FormData();
@@ -97,9 +97,14 @@ function PublishVideo() {
               })}
             />
 
-            <button type="submit" className="w-[50%] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg mt-4 cursor-pointer">
-              Upload Video
-            </button>
+           <button
+  type="submit"
+  disabled={loading}
+  className="w-[50%] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg mt-4 cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed"
+>
+  {loading ? "Uploading..." : "Upload Video"}
+</button>
+
 
           </form>
 
